@@ -96,15 +96,42 @@ def add_pet_to_customer(customer, new_pet)
 end
 
 def customer_can_afford_pet(customer, pet_wanted)
+  # TEST FOR THIS FUNCTION:
+  # def test_customer_can_afford_pet__insufficient_funds
+  #   customer = @customers[1]
+  #   can_buy_pet = customer_can_afford_pet(customer, @new_pet)
+  #   assert_equal(false, can_buy_pet)
+  # end
+
+  # I read this as:
+  # - return true if the customer has enough cash to buy the pet
+  # - return false if the customer does not have enough cash
+
+  # inputs are:
+    # customer - a person, specified in the test as an element in the @customers hash
+    # pet - a specific animal, specificed in the test as @new_pet
+
+  # I'm assuming that we don't need to check whether the pet exists, as that will have been done elsewhere: returning a pet hash if it does, and nil if it doesn't
+
+  # In this case, all I have to do is check whether "pet" == nil
+  # If it's nil, then I can't check if the customer can afford it, because it doesn't exist.
+  # If it's not nil, then I can go ahead and compare the price of the pet with the customer's available cash.
 
   customer_cash = customer[:cash]
+  # agree with this bit!
 
   pets = @pet_shop[:pets]
+  # I think this is more than you need....
+  # Your "customer_can_afford_pet" method asks for a "pet_wanted", which - based on the test - is the entire hash detailing the pet.
+  # The test specifies @new_pet, which is a hash.
+
+  # I _think_ that means that you could just compare the customer's cash with the price of the pet, and have a working method...
+
     p "rb:pets - #{pets}"
     p "pet_wanted #{pet_wanted}"
 
-
     for pet in pets
+
     if pet == pet_wanted
       p pet
       p pet_wanted
